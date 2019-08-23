@@ -1,10 +1,62 @@
-<body>
-  <div id="wrapper">
-    <h1>Note Scraper</h1>
-    <h2><i>Art!</i></h2>
-    <div id="articles"></div>
-    <div id="notes"></div>
+<body class="main">
+      <header class="">
+        <nav class="navbar navbar-expand-md h-font navbar-light " id="hover-nav">
+          <div class="h-font">
+            <h1 class="h-font">Artnet News Scraper</h1>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class=" navbar-nav ml-auto nav-font">
+              <li class="nav-item active">
+                <a class="nav-link ks-nav" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ks-nav" href="#tech">Technology</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+
+<div class="container-fluid">
+{{!-- <div class="card-deck"> --}}
+            <div class="row justify-content-center">
+      {{#each Articles}}
+
+
+        <a class="link-to-art-page" href="/articles/{{id}}">
+
+            <div class="col-lg-5 border ks-container m-4 biggerBox">
+              <section class="p-4">
+                <div = "img-wrap">
+                  <img class="image pb-4 pr-4 float-left" src={{image}}>
+                </div>
+                <section class="">
+                  <h4 class="h-font title-article-name ">{{title}}</h4>
+                  <p class="title-article-name">{{summary}}
+                  </p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                </section>
+              </section>
+            </div>
+
+        </a>
+  {{/each}}
+          </div>
+{{!-- </div> --}}
+</div>
+
   </div>
+      <!-- Footer -->
+      <footer class=" text-center mt-auto">
+        <div class="h-font footerText">© 2019 Kayleigh Starr
+        </div>
+      </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="app.js"></script>
 </body>
