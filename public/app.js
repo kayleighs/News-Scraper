@@ -17,7 +17,7 @@ $("#comment-submit").on("click", function () {
   }).then(function () {
     console.log("created new comment");
     // Reload the page to get the updated list
-   // location.reload();
+    location.reload();
   });
 });
 //Handle Delete Note button
@@ -43,7 +43,7 @@ $(".delete-comment").on("click", function () {
   }).then(function () {
     console.log("deleted comment", id);
     // Reload the page to get the updated list
-  //  location.reload();
+    location.reload();
   });
 });
 
