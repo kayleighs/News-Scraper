@@ -33,6 +33,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/artnet-news";
 
 mongoose.connect(MONGODB_URI);
 
+
 // Handlebars
 app.engine(
   "handlebars",
