@@ -1,5 +1,9 @@
 var db = require("../models");
+var axios = require("axios");
+var cheerio = require("cheerio");
+var mongoose = require("mongoose");
 module.exports = function (app) {
+  
   app.get("/", function (req, res) {
     db.Article.find({}).then(function (result) {
       res.render("index", {
@@ -7,12 +11,20 @@ module.exports = function (app) {
       });
     });
   });
+  app.get("/saved", function (req, res) {
+    db.Article.find({ saved: true}).then(function (result) {
+      res.render("saved", {
+        Articles: result
+      });
+    });
+  });
+
 /*   app.get("/articles/:id", function (req, res) {
     db.Articles.find({ where: { id: req.params.id } }).then(
       function (dbArticles) {
-        db.Comment.findAll({ where: { source: req.params.fullName } }).then(
+        db.Comment.findAll({ where: { source: req.params.id } }).then(
           function (dbComments) {
-            res.render("candidate", {
+            res.render("article", {
               Articles: dbArticles,
               Comments: dbComments
             });

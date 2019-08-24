@@ -149,7 +149,11 @@ transition: all 0.3s ease 0s;
     left: 70%; 
     transform: translateX(-50%); 
         } 
-
+.bottom-right { 
+    bottom: 1%; 
+    left: 90%; 
+    transform: translateX(-50%); 
+        } 
 .ks-button:hover {
 color: #404040 !important;
 font-weight: 700 !important;

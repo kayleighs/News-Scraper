@@ -10,13 +10,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class=" navbar-nav ml-auto nav-font">
-              <li class="nav-item active">
+              <li class="nav-item ">
                 <a class="nav-link ks-nav" href="/">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link ks-nav" href="/scrape">Scrape</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link ks-nav" href="/saved">Saved</a>
               </li>
             </ul>
@@ -26,14 +26,12 @@
 
 
 <div class="container-fluid">
-{{!-- <div class="card-deck"> --}}
             <div class="row justify-content-center">
       {{#each Articles}}
-
+      {{#if saved}}
         <a class="link-to-art-page" href={{link}}>
 {{!-- <div id="fpc_effect-back"> --}}
   <div class="col-lg-5 border ks-container m-4 biggerBox" id="fpc_box">
-
             <div class=""  id="fpc_content">
               <section class="p-4">
                 <div = "img-wrap">
@@ -48,7 +46,7 @@
                     <a  href="/articles/{{id}}" class="ks-button">Comments</a>
                   </div>
                   <div class="position-absolute bottom-right ">
-                    <a data-id={{id}} href="/saved"class="ks-button save-btn">Save</a>
+                    <a data-id={{id}} href="/saved"class="ks-button un-save-btn">Un-Save</a>
                   </div>
                 </section>
               </section>
@@ -61,13 +59,10 @@
                   </div>
             </div>
           </div>
-{{!--           </div> --}}
         </a>
-
-
+      {{/if}}
   {{/each}}
           </div>
-{{!-- </div> --}}
 </div>
 
       <!-- Footer -->
