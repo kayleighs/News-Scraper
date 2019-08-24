@@ -44,6 +44,9 @@ app.set("view engine", "handlebars");
 require("./routes/htmlRoutes")(app);
 require("./routes/article")(app);
 
+
+
+
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");

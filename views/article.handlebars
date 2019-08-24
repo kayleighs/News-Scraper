@@ -1,0 +1,108 @@
+
+<body class="main">
+  <header class="">
+    <nav class="navbar navbar-expand-md h-font navbar-light " id="hover-nav">
+      <div class="h-font">
+        <h1 class="h-font">Artnet News Scraper</h1>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class=" navbar-nav ml-auto nav-font">
+          <li class="nav-item active">
+            <a class="nav-link ks-nav" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ks-nav" href="/scrape">Scrape</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <div class="container-fluid">
+        <div class="row justify-content-center">
+        
+          <a class="link-to-art-page" href="/articles/{{Article.id}}">
+            <div class="col-lg-5 border ks-container m-4 biggerBox" id="fpc_box">
+        
+              <div class="" id="fpc_content">
+                <section class="p-4">
+                  <div="img-wrap">
+                    <img class="image pb-4 pr-4 float-left" src={{Article.image}}>
+              </div>
+              <section class="text-center">
+                <h4 class="h-font title-article-name ">{{Article.title}}</h4>
+                <p class="title-article-name">{{Article.summary}}
+                </p>
+                <br>
+                <div class="position-absolute bottom-center ">
+                  <a href="/api/articles/{{Article.id}}" class="ks-button">Api View</a>
+                </div>
+        
+              </section>
+              </section>
+              <div id="fpc_corner-box">
+                <a id="fpc_page-tip" href="/articles/{{Article.id}}">
+                  <div id="fpc_corner-contents">
+                    <div id="fpc_corner-button"><strong>Article Link</strong></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+        </div>
+        </a>
+        </div>
+  </div>
+        <div class="col-md-5 ks-container mx-auto p-2 m-3">
+          <h3 class="text-center py-2 mx-auto border-bottom h-font">Comments</h3>
+          <div class="mx-auto">
+            {{#if Article.note}}
+            {{#each Article.note}}
+            <div class="p-4 ks-com-container mb-2">
+              <strong>
+                {{title}}
+              </strong>
+              <button id="#delete-comment" data-id={{_id}} type="button" class="ml-4 close delete-comment">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <span class="clear">wrote:</span>
+              <div class="clear">{{body}}</div>
+        
+            </div>
+            {{/each}}
+            {{else}}
+            <p>No Comments Yet.</p>
+            {{/if}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 border ks-container m-4">
+            <form class="p-4">
+              <div class="form-group">
+                <label for="comment-author">Name:</label>
+                <input class="form-control" id="comment-author" placeholder="Anonymous">
+              </div>
+              <div class="form-group">
+                <label for="comment-title">Title:</label>
+                <input class="form-control" id="comment-title" placeholder="Anonymous">
+              </div>
+              <div class="form-group">
+                <label for="comment-body">Comment:</label>
+                <textarea class="form-control" id="comment-body" rows="3"></textarea>
+                <button type="submit" data-id={{Article.id}} class="mt-3 ks-button" id="comment-submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+  <!-- Footer -->
+  <footer class=" text-center mt-auto">
+    <div class="h-font footerText">© 2019 Kayleigh Starr
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../app.js"></script>
+</body>

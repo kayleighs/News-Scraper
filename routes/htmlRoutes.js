@@ -7,4 +7,18 @@ module.exports = function (app) {
       });
     });
   });
+/*   app.get("/articles/:id", function (req, res) {
+    db.Articles.find({ where: { id: req.params.id } }).then(
+      function (dbArticles) {
+        db.Comment.findAll({ where: { source: req.params.fullName } }).then(
+          function (dbComments) {
+            res.render("candidate", {
+              Articles: dbArticles,
+              Comments: dbComments
+            });
+          }
+        );
+      }
+    );
+  }); */
 };

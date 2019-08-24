@@ -14,7 +14,7 @@
                 <a class="nav-link ks-nav" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link ks-nav" href="#tech">Technology</a>
+                <a class="nav-link ks-nav" href="/scrape">Scrape</a>
               </li>
             </ul>
           </div>
@@ -27,25 +27,38 @@
             <div class="row justify-content-center">
       {{#each Articles}}
 
+        <a class="link-to-art-page" href={{link}}>
+{{!-- <div id="fpc_effect-back"> --}}
+  <div class="col-lg-5 border ks-container m-4 biggerBox" id="fpc_box">
 
-        <a class="link-to-art-page" href="/articles/{{id}}">
-
-            <div class="col-lg-5 border ks-container m-4 biggerBox">
+            <div class=""  id="fpc_content">
               <section class="p-4">
                 <div = "img-wrap">
                   <img class="image pb-4 pr-4 float-left" src={{image}}>
                 </div>
-                <section class="">
+                <section class="text-center">
                   <h4 class="h-font title-article-name ">{{title}}</h4>
                   <p class="title-article-name">{{summary}}
                   </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-
+                  <br>
+                  <div class="position-absolute bottom-center ">
+                    <a  href="/articles/{{id}}" class="ks-button">Comments</a>
+                  </div>
                 </section>
               </section>
+                  <div id="fpc_corner-box">
+                    <a id="fpc_page-tip" href={{link}} target="_blank">
+                      <div id="fpc_corner-contents">
+                        <div id="fpc_corner-button"><strong>Article Link</strong></div>
+                      </div>
+                    </a>
+                  </div>
             </div>
-
+          </div>
+{{!--           </div> --}}
         </a>
+
+
   {{/each}}
           </div>
 {{!-- </div> --}}
