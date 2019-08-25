@@ -103,7 +103,9 @@ app.get("/scrape2", function (req, res) {
         }
       });
       // Send a message to the client
-      res.send("Scrape Complete");
+      console.log("Scrape Complete")
+      //res.send("Scrape Complete");
+      res.redirect('/');
     });
     axios.get()
   });
