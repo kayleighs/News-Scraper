@@ -13,7 +13,7 @@ The user can also remove article from saved articles.
 ### To Use
 Click on scrape to get new articles! Comment and save!
 
-<img src="./public/assets/img/example.gif" width="800">
+<img src="./public/assets/img/example.jpg" width="800">
  
 ## Built With
 * node.js
