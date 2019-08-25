@@ -10,12 +10,11 @@ var Article = require("../models/Article.js");
 // Routes
 module.exports = function (app) {
 // A GET route for scraping the echoJS website
-app.get("/scrape", function (req, res) {
+app.get("/scrape2", function (req, res) {
   // First, we grab the body of the html with axios
   axios.get("https://news.artnet.com/").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-
     // Now, we grab every h2 within an article tag, and do the following:
     $("article.teaser").each(function (i, element) {
       // Save an empty result object
@@ -51,6 +50,67 @@ app.get("/scrape", function (req, res) {
   });
   axios.get()
 });
+//Scrape for no duplicates
+  app.get("/scrape", function (req, res) {
+    // First, we grab the body of the html with axios
+    axios.get("https://news.artnet.com/").then(function (response) {
+      // Then, we load that into cheerio and save it to $ for a shorthand selector
+      var $ = cheerio.load(response.data);
+      var linksArray = [];
+      // Now, we grab every h2 within an article tag, and do the following:
+      $("article.teaser").each(function (i, element) {
+        // Save an empty result object
+        var result = {};
+
+        // Add the text and href of every link, and save them as properties of the result object
+        result.title = $(this)
+          .children().children().children("h2.teaser-title")
+          .text();
+        result.link = $(this)
+          .children().children("a")
+          .attr("href");
+        result.summary = $(this)
+          .children().children().children("p.teaser-blurb")
+          .text();
+        result.image = $(this)
+          .children("a").children("div.image-wrapper").children("img").attr("src");
+        result.saved = false;
+        // Create a new Article using the `result` object built from scraping
+        if (linksArray.indexOf(result.link) == -1) {
+
+          // push the saved title to the array 
+          linksArray.push(result.link);
+          console.log(linksArray)
+          // only add the article if is not already there
+          Article.countDocuments({ link: result.link }, function (err, test) {
+            //if the test is 0, the entry is unique and good to save
+            if (test == 0) {
+
+              db.Article.create(result)
+                .then(function (dbArticle) {
+                  // View the added result in the console
+                  console.log(dbArticle);
+                })
+                .catch(function (err) {
+                  // If an error occurred, log it
+                  console.log(err);
+                });
+            }
+          });
+        }
+        else {
+          console.log('Article already exists.')
+        }
+      });
+      // Send a message to the client
+      res.send("Scrape Complete");
+    });
+    axios.get()
+  });
+
+
+
+
 
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
