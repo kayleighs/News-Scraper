@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 module.exports = function (app) {
   
   app.get("/", function (req, res) {
-    db.Article.find({}).then(function (result) {
+    db.Article.find().sort({ _id: -1 }).then(function (result) {
       res.render("index", {
         Articles: result
       });

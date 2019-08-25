@@ -28,6 +28,7 @@ Click on scrape to get new articles! Comment and save!
 * [axios](https://www.npmjs.com/package/axios)-for HTTP requests from node
 * [cheerio](https://www.npmjs.com/package/cheerio)-for scraping
 * [mongoose](https://www.npmjs.com/package/mongoose)-for database
+* [request npm](https://www.npmjs.com/package/request)-for getting full text from the individual articles
 * [morgan](https://www.npmjs.com/package/morgan)
 
 

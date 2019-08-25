@@ -27,7 +27,7 @@
         <div class="row justify-content-center">
         
           <a class="link-to-art-page" href="/articles/{{Article.id}}">
-            <div class="col-lg-5 border ks-container m-4 biggerBox" id="fpc_box">
+            <div class="col-lg-8 border ks-container m-4 biggerBox p-3" id="fpc_box">
         
               <div class="" id="fpc_content">
                 <section class="p-4">
@@ -38,8 +38,11 @@
                 <h4 class="h-font title-article-name ">{{Article.title}}</h4>
                 <p class="title-article-name">{{Article.summary}}
                 </p>
+                <p class="title-article-name text-left font-weight-light">{{body}}
+                </p>
                 <br>
-                <div class="position-absolute bottom-center ">
+                <br>
+                <div class="position-absolute bottom-center-50 ">
                   <a href="/api/articles/{{Article.id}}" class="ks-button">Api View</a>
                 </div>
         

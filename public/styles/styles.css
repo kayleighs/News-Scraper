@@ -149,6 +149,11 @@ transition: all 0.3s ease 0s;
     left: 70%; 
     transform: translateX(-50%); 
         } 
+.bottom-center-50 { 
+    bottom: 1%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+        } 
 .bottom-right { 
     bottom: 1%; 
     left: 90%; 

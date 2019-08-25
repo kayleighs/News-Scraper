@@ -45,6 +45,7 @@
                   <div class="position-absolute bottom-center ">
                     <a  href="/articles/{{id}}" class="ks-button">Comments</a>
                   </div>
+                  <br>
                   <div class="position-absolute bottom-right ">
                     <a data-id={{id}} href="/saved"class="ks-button un-save-btn">Un-Save</a>
                   </div>
@@ -61,7 +62,10 @@
           </div>
         </a>
       {{/if}}
+        {{else}}
+        <p>Nothing Saved Yet.</p>
   {{/each}}
+
           </div>
 </div>
 

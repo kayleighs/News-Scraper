@@ -2,6 +2,7 @@ var db = require("../models");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var mongoose = require("mongoose");
+var request = require('request');
 // Requiring Note and Article models
 var Note = require("../models/Note.js");
 var Article = require("../models/Article.js");
@@ -48,12 +49,13 @@ app.get("/scrape", function (req, res) {
     // Send a message to the client
     res.send("Scrape Complete");
   });
+  axios.get()
 });
 
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
   // Grab every document in the Articles collection
-  db.Article.find({})
+  db.Article.find().sort({ _id: -1 })
     .then(function (dbArticle) {
       // If we were able to successfully find Articles, send them back to the client
       res.json(dbArticle);
@@ -64,7 +66,7 @@ app.get("/articles", function (req, res) {
     });
 });
 
-// Route for grabbing a specific Article by id, populate it with it's note
+// Route for grabbing a specific Article by id, populate it with it's note, only for API
 app.get("/api/articles/:id", function (req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article.findOne({ _id: req.params.id })
@@ -79,7 +81,8 @@ app.get("/api/articles/:id", function (req, res) {
       res.json(err);
     });
 });
-  app.get("/articles/:id", function (req, res) {
+//to load each individual page, Old, doesn't get the link body
+  app.get("/articlesOld/:id", function (req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
     db.Article.findOne({ _id: req.params.id })
       // ..and populate all of the notes associated with it
@@ -95,7 +98,45 @@ app.get("/api/articles/:id", function (req, res) {
         res.json(err);
       }); */
   });
-  })
+  });
+
+//for Scraping full article
+  app.get('/articles/:id', function (req, res) {
+    var articleId = req.params.id;
+    //console.log(articleId)
+    var hbsObj = {
+      Article: [],
+      body: []
+    };
+    // //find the article at the id
+    db.Article.findOne({ _id: articleId })
+      .populate("notes")
+      .exec(function (err, doc) {
+        if (err) {
+          console.log('Error: ' + err);
+        } else {
+          hbsObj.Article = doc;
+          var link = doc.link;
+          console.log(link)
+          //grab article from link
+          request(link, function (error, response, html) {
+            var $ = cheerio.load(html);
+            $('.article-body').each(function (i, element) {
+              hbsObj.body = $(this).children('p').text();
+              //console.log(hbsObj)
+              //send article body and comments to article.handlbars through hbObj
+              res.render('article', hbsObj);
+              //prevents loop through so it doesn't return an empty hbsObj.body
+              return false;
+            });
+          });
+        }
+      });
+  });
+
+
+
+  //not needed
   app.post("/api/comments", function (req, res) {
     db.Comment.create(req.body).then(function (dbComments) {
       //     res.redirect("/api/comments");
@@ -104,7 +145,7 @@ app.get("/api/articles/:id", function (req, res) {
   });
 
 
-  // Route for saving/updating an Article's associated Note
+  // Route for saving/updating an Article's associated Note, old code, not needed
   app.post("/api/articles/:id", function (req, res) {
     // Create a new note and pass the req.body to the entry
     console.log(req.body)
