@@ -21,32 +21,19 @@ $("#comment-submit").on("click", function () {
   });
 });
 //Handle Delete Note button
-$(".deleteNote").on("click", function () {
+$(".delete-comment").on("click", function () {
   var noteId = $(this).attr("data-note-id");
   var articleId = $(this).attr("data-article-id");
+  console.log("articleId is " + articleId)
+
   $.ajax({
     method: "DELETE",
     url: "/notes/delete/" + noteId + "/" + articleId
   }).done(function (data) {
     console.log(data)
-    $(".modalNote").modal("hide");
-    window.location = "/saved"
+    location.reload();
   })
 });
-
-$(".delete-comment").on("click", function () {
-  console.log("clicked delete");
-  var id = $(this).data("id");
-  // Send the DELETE request.
-  $.ajax("/api/comments/" + id, {
-    type: "DELETE"
-  }).then(function () {
-    console.log("deleted comment", id);
-    // Reload the page to get the updated list
-    location.reload();
-  });
-});
-
 
 // Saving and Unsaving
 $(".save-btn").on("click", function () {

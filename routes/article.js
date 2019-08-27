@@ -272,7 +272,7 @@ app.get("/api/articles/:id", function (req, res) {
         res.send(err);
       }
       else {
-        Article.findOneAndUpdate({ "_id": req.params.article_id }, { $pull: { "notes": req.params.note_id } })
+        Article.findOneAndUpdate({ "_id": req.params.Article_id }, { $pull: { "notes": req.params.note_id } })
           // Execute the above query
           .exec(function (err) {
             if (err) {
